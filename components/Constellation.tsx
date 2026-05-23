@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PROFILE_ROLES } from "@/lib/profile-roles";
 
 interface Discipline {
   id: string;
@@ -10,6 +11,8 @@ interface Discipline {
   desc: string;
   icon: string;
   relation: string;
+  professionalRole?: string;
+  orbitShort?: string;
 }
 
 const DISCIPLINES: Discipline[] = [
@@ -20,7 +23,9 @@ const DISCIPLINES: Discipline[] = [
     role: "Construir lo que se piensa.",
     desc: "Desarrollo de sistemas a escala, arquitectura de software e infraestructura robusta que materializa las ideas.",
     icon: "◆",
-    relation: "La técnica sin introspección es solo código; con ella, es arquitectura con propósito y significado."
+    relation: "La técnica sin introspección es solo código; con ella, es arquitectura con propósito y significado.",
+    professionalRole: PROFILE_ROLES.constellation.engineering,
+    orbitShort: PROFILE_ROLES.orbitShort.engineering,
   },
   {
     id: "d2",
@@ -29,7 +34,9 @@ const DISCIPLINES: Discipline[] = [
     role: "Decidir qué construir y cuándo.",
     desc: "Estrategia de producto, priorización de características y análisis de tracción para maximizar el valor de entrega.",
     icon: "◇",
-    relation: "Decidir qué construir y cuándo requiere entender primero las motivaciones profundas del usuario."
+    relation: "Decidir qué construir y cuándo requiere entender primero las motivaciones profundas del usuario.",
+    professionalRole: PROFILE_ROLES.constellation.product,
+    orbitShort: PROFILE_ROLES.orbitShort.product,
   },
   {
     id: "d3",
@@ -148,8 +155,9 @@ export default function Constellation() {
               }`}
             >
               <span className="text-sm font-semibold">◆</span>
-              <span className="absolute -top-6 right-2 font-mono text-[9px] uppercase tracking-wider text-zinc-400 whitespace-nowrap">
+              <span className="absolute -top-6 right-2 font-mono text-[9px] uppercase tracking-wider text-zinc-400 whitespace-nowrap text-right">
                 Ingeniería
+                <span className="block text-[8px] text-[#10b981]/80 tracking-widest mt-0.5">{PROFILE_ROLES.orbitShort.engineering}</span>
               </span>
             </button>
 
@@ -166,6 +174,7 @@ export default function Constellation() {
               <span className="text-sm font-semibold">◇</span>
               <span className="absolute -top-6 left-2 font-mono text-[9px] uppercase tracking-wider text-zinc-400 whitespace-nowrap">
                 Producto
+                <span className="block text-[8px] text-[#10b981]/80 tracking-widest mt-0.5">{PROFILE_ROLES.orbitShort.product}</span>
               </span>
             </button>
 
@@ -221,9 +230,15 @@ export default function Constellation() {
                     <span className="text-xl text-[#10b981]">{activeDisc.icon}</span>
                   </div>
 
-                  <h3 className="text-zinc-100 text-3xl font-serif-poetic font-light italic tracking-wide mb-3">
+                  <h3 className="text-zinc-100 text-3xl font-serif-poetic font-light italic tracking-wide mb-2">
                     {activeDisc.name}
                   </h3>
+
+                  {activeDisc.professionalRole && (
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#10b981]/90 mb-3">
+                      {activeDisc.professionalRole}
+                    </p>
+                  )}
 
                   <p className="text-[#10b981] font-serif-poetic italic text-lg leading-relaxed mb-4">
                     {activeDisc.role}
@@ -285,7 +300,12 @@ export default function Constellation() {
                   </span>
                   <span className="text-base text-[#10b981]">{disc.icon}</span>
                 </div>
-                <h4 className="text-zinc-100 text-lg font-serif-poetic font-light italic mb-1.5">{disc.name}</h4>
+                <h4 className="text-zinc-100 text-lg font-serif-poetic font-light italic mb-1">{disc.name}</h4>
+                {disc.professionalRole && (
+                  <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#10b981]/85 mb-1.5">
+                    {disc.professionalRole}
+                  </p>
+                )}
                 <p className="text-[#10b981] text-xs font-serif-poetic italic leading-relaxed mb-2">{disc.role}</p>
                 <p className="text-zinc-400 text-xs leading-relaxed mb-3">
                   {disc.desc}

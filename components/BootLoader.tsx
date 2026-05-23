@@ -11,7 +11,7 @@ const BOOT_LOGS = [
   "identity: loading studio configs v3.0.26",
   "philosophy: mounting introspective.so",
   "engine: establishing center of gravity",
-  "modules: engineering, product, anthropology, neuro",
+  "modules: tpm, ai-integration, web-engineering, data-analytics",
   "network: listening on 4 continents",
   "status: ready"
 ];

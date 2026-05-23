@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import BootLoader from "@/components/BootLoader";
 import TextReveal from "@/components/TextReveal";
 import Constellation from "@/components/Constellation";
+import { PROFILE_ROLES, type RoleTag } from "@/lib/profile-roles";
 
 interface PortraitCardProps {
   imageSrc: string;
@@ -189,7 +190,36 @@ const SECTIONS = [
   { id: "07", label: "Manifiesto", elementId: "manifiesto" },
 ];
 
-const BADGES = [
+const BADGES: {
+  title: string;
+  issuer: string;
+  year: string;
+  img: string;
+  cert: string;
+  glow: string;
+  shadow: string;
+  roleTag?: RoleTag;
+}[] = [
+  {
+    title: "Product Manager Bootcamp",
+    issuer: "ProductHub",
+    year: "2024",
+    img: "/insignias/manager.png",
+    cert: "/certificates/product-manager.png",
+    glow: "rgba(16, 185, 129, 0.25)",
+    shadow: "rgba(16, 185, 129, 0.04)",
+    roleTag: "tpm",
+  },
+  {
+    title: "Claude Code · Certified",
+    issuer: "Anthropic",
+    year: "2025",
+    img: "/insignias/claude.png",
+    cert: "/certificates/claude-code-certified.pdf",
+    glow: "rgba(34, 197, 94, 0.35)",
+    shadow: "rgba(34, 197, 94, 0.05)",
+    roleTag: "ai",
+  },
   {
     title: "Ingeniería de Sitios Web",
     issuer: "Tech U.",
@@ -198,6 +228,47 @@ const BADGES = [
     cert: "/certificates/ingenieria-web.pdf",
     glow: "rgba(16, 185, 129, 0.25)",
     shadow: "rgba(16, 185, 129, 0.04)",
+    roleTag: "web",
+  },
+  {
+    title: "Product Analytics Essentials",
+    issuer: "ProductHub",
+    year: "2024",
+    img: "/insignias/productAnalitics.png",
+    cert: "/certificates/product-analytics.png",
+    glow: "rgba(20, 184, 166, 0.25)",
+    shadow: "rgba(20, 184, 166, 0.04)",
+    roleTag: "data",
+  },
+  {
+    title: "Análisis e Interpretación de Datos",
+    issuer: "Fundación Carlos Slim",
+    year: "2023",
+    img: "/insignias/analisis.png",
+    cert: "/certificates/analista-datos.png",
+    glow: "rgba(4, 120, 87, 0.25)",
+    shadow: "rgba(4, 120, 87, 0.04)",
+    roleTag: "data",
+  },
+  {
+    title: "Desarrollo Web Full-Stack",
+    issuer: "LinkedIn Learning",
+    year: "2023",
+    img: "/insignias/linkedin.png",
+    cert: "/certificates/desarrollador-web-fullstack.pdf",
+    glow: "rgba(110, 231, 183, 0.25)",
+    shadow: "rgba(110, 231, 183, 0.04)",
+    roleTag: "web",
+  },
+  {
+    title: "Gestión de Proyectos & Agile",
+    issuer: "Santander Open Academy",
+    year: "2025",
+    img: "/insignias/santander.png",
+    cert: "/certificates/gestion-proyectos-santander.pdf",
+    glow: "rgba(13, 148, 136, 0.25)",
+    shadow: "rgba(13, 148, 136, 0.04)",
+    roleTag: "tpm",
   },
   {
     title: "Neurociencia Aplicada",
@@ -216,60 +287,6 @@ const BADGES = [
     cert: "/certificates/eneagrama-nivel-3.pdf",
     glow: "rgba(52, 211, 153, 0.25)",
     shadow: "rgba(52, 211, 153, 0.04)",
-  },
-  {
-    title: "Product Manager Bootcamp",
-    issuer: "ProductHub",
-    year: "2024",
-    img: "/insignias/manager.png",
-    cert: "/certificates/product-manager.png",
-    glow: "rgba(16, 185, 129, 0.25)",
-    shadow: "rgba(16, 185, 129, 0.04)",
-  },
-  {
-    title: "Product Analytics Essentials",
-    issuer: "ProductHub",
-    year: "2024",
-    img: "/insignias/productAnalitics.png",
-    cert: "/certificates/product-analytics.png",
-    glow: "rgba(20, 184, 166, 0.25)",
-    shadow: "rgba(20, 184, 166, 0.04)",
-  },
-  {
-    title: "Gestión de Proyectos & Agile",
-    issuer: "Santander Open Academy",
-    year: "2025",
-    img: "/insignias/santander.png",
-    cert: "/certificates/gestion-proyectos-santander.pdf",
-    glow: "rgba(13, 148, 136, 0.25)",
-    shadow: "rgba(13, 148, 136, 0.04)",
-  },
-  {
-    title: "Desarrollo Web Full-Stack",
-    issuer: "LinkedIn Learning",
-    year: "2023",
-    img: "/insignias/linkedin.png",
-    cert: "/certificates/desarrollador-web-fullstack.pdf",
-    glow: "rgba(110, 231, 183, 0.25)",
-    shadow: "rgba(110, 231, 183, 0.04)",
-  },
-  {
-    title: "Análisis e Interpretación de Datos",
-    issuer: "Fundación Carlos Slim",
-    year: "2023",
-    img: "/insignias/analisis.png",
-    cert: "/certificates/analista-datos.png",
-    glow: "rgba(4, 120, 87, 0.25)",
-    shadow: "rgba(4, 120, 87, 0.04)",
-  },
-  {
-    title: "Claude Code · Certified",
-    issuer: "Anthropic",
-    year: "2025",
-    img: "/insignias/claude.png",
-    cert: "/certificates/claude-code-certified.pdf",
-    glow: "rgba(34, 197, 94, 0.35)",
-    shadow: "rgba(34, 197, 94, 0.05)",
   },
 ];
 
@@ -495,6 +512,17 @@ export default function Home() {
                   Savat<span className="text-[#10b981]">.</span>
                 </span>
               </h1>
+
+              <div className="animate-reveal-3 pt-2">
+                <span className="role-primary">{PROFILE_ROLES.primary}</span>
+                <div className="role-chips">
+                  {PROFILE_ROLES.secondary.map((role) => (
+                    <span key={role} className="role-chip">
+                      {role}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Right Portrait & Coordinates - Mysterious details */}
@@ -514,7 +542,7 @@ export default function Home() {
             <div className="md:col-span-8 space-y-8">
               <p className="text-zinc-300 text-lg md:text-xl leading-relaxed font-light tracking-wide max-w-2xl">
                 Soy un colaborador <span className="text-[#10b981] font-serif-poetic italic text-2xl font-normal">introspectivo</span>, observador y profundamente curioso.
-                Acompaño a fundadores y equipos de alto rendimiento uniendo inteligencia emocional, estrategia y desarrollo de software —
+                Acompaño a fundadores y equipos de alto rendimiento desde producto, integración de IA, ingeniería web y analítica —
                 con calidez, mirada larga y el foco en construir soluciones con sentido.
               </p>
 
@@ -546,7 +574,7 @@ export default function Home() {
             <div className="md:col-span-4 grid grid-cols-2 gap-4 w-full metrics-panel">
               <AnimatedMetricCard value="40+" label="Proyectos" />
               <AnimatedMetricCard value="04" label="Continentes" />
-              <AnimatedMetricCard value="04" label="Disciplinas" />
+              <AnimatedMetricCard value="04" label="Core roles" />
               <AnimatedMetricCard value="09" label="Certificaciones" />
             </div>
           </div>
@@ -675,7 +703,7 @@ export default function Home() {
                     "--badge-glow": badge.glow,
                     "--badge-shadow": badge.shadow,
                   } as React.CSSProperties}
-                  title={`${badge.title} — ${badge.issuer}`}
+                  title={`${badge.title} — ${badge.issuer}${badge.roleTag ? ` · ${badge.roleTag.toUpperCase()}` : ""}`}
                 >
                   {/* Large, beautiful floating insignia */}
                   <div className="relative w-full h-full flex items-center justify-center transition-all duration-700 ease-out group-hover:scale-110">
@@ -805,6 +833,7 @@ export default function Home() {
             <div className="ticker-track font-mono text-xs uppercase tracking-widest text-zinc-500 gap-16">
               <span>
                 Sistemas a medida <i className="text-[#10b981] mx-2">◆</i> Estrategia de producto <i className="text-[#10b981] mx-2">◆</i>
+                AI integration <i className="text-[#10b981] mx-2">◆</i> Product analytics <i className="text-[#10b981] mx-2">◆</i>
                 Investigación aplicada <i className="text-[#10b981] mx-2">◆</i> Mentoría a fundadores <i className="text-[#10b981] mx-2">◆</i>
                 Plataformas SaaS <i className="text-[#10b981] mx-2">◆</i> Comunidades digitales <i className="text-[#10b981] mx-2">◆</i>
                 Programas de formación <i className="text-[#10b981] mx-2">◆</i> Rediseños de cultura <i className="text-[#10b981] mx-2">◆</i>
@@ -812,6 +841,7 @@ export default function Home() {
               </span>
               <span>
                 Sistemas a medida <i className="text-[#10b981] mx-2">◆</i> Estrategia de producto <i className="text-[#10b981] mx-2">◆</i>
+                AI integration <i className="text-[#10b981] mx-2">◆</i> Product analytics <i className="text-[#10b981] mx-2">◆</i>
                 Investigación aplicada <i className="text-[#10b981] mx-2">◆</i> Mentoría a fundadores <i className="text-[#10b981] mx-2">◆</i>
                 Plataformas SaaS <i className="text-[#10b981] mx-2">◆</i> Comunidades digitales <i className="text-[#10b981] mx-2">◆</i>
                 Programas de formación <i className="text-[#10b981] mx-2">◆</i> Rediseños de cultura <i className="text-[#10b981] mx-2">◆</i>

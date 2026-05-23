@@ -16,10 +16,16 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Leandro Savat — Estudio de un colaborador · Ed. 03",
+  title: "Leandro Savat — Technical Product Manager · Studio Ed. 03",
   description:
-    "Soy un colaborador introspectivo, observador y profundamente curioso. Acompaño equipos y fundadores desde la investigación, la estrategia y el desarrollo — con calidez y mirada larga.",
-  keywords: ["Leandro Savat", "Product Manager", "Ingeniería de Software", "Antropología", "Neurociencia", "Socio Estratégico"],
+    "Technical Product Manager, AI Integration Leader, Web Engineer Specialist and Data Analytics. I help founders and high-performance teams build meaningful products with warmth and long-term vision.",
+  keywords: [
+    "Leandro Savat",
+    "Technical Product Manager",
+    "AI Integration Leader",
+    "Web Engineer Specialist",
+    "Data Analytics",
+  ],
   authors: [{ name: "Leandro Savat" }],
 };
 
